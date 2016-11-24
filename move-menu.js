@@ -62,12 +62,17 @@ AFRAME.registerComponent('move-menu', {
         { src: '#destinations_button_sa' },
         { src: '#destinations_button_vic' }
       ],
-      news: [],
+      news: [
+        { src: '#news_button_top_stories' },
+        { src: '#news_button_sport' },
+        { src: '#news_button_business' },
+        { src: '#news_button_entertainment' }
+      ],
       features: [
-        { src: '#features_button_sport' },
-        { src: '#features_button_real_estate' },
-        { src: '#features_button_food' },
-        { src: '#features_button_business' },
+        { src: '#features_button_hurricane' },
+        { src: '#features_button_jared_hayne' },
+        { src: '#features_button_taste' },
+        { src: '#features_button_west_connex' },
       ],
       entertainment: [
         { src: '#entertainment_button_celebrity' },
@@ -83,7 +88,8 @@ AFRAME.registerComponent('move-menu', {
 
     for (var i = 0; i < items.length; i++) {
       var box = this.makebox();
-      var x = ((0 - items.length / 2) + i * 1);
+      var totalwidth = items.length * (1 + 1);
+      var x = -totalwidth / 4 + (i * 1.25);
       var y = 1.5;
 
       box.setAttribute('position', x + ' ' + ' 0.5 ' + ' -6.5');
