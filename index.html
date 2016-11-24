@@ -1,43 +1,97 @@
-<!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="utf-8">
-    <title>360&deg; Image Gallery</title>
-    <meta name="description" content="360&deg; Image Gallery - A-Frame">
-    <script src="https://rawgit.com/aframevr/aframe/917c06889ee1f3f79b7b1bbd9eab9815f9512503/dist/aframe.min.js"></script>
-    <script src="https://npmcdn.com/aframe-animation-component@3.0.1"></script>
-    <script src="https://npmcdn.com/aframe-event-set-component@3.0.1"></script>
-    <script src="https://npmcdn.com/aframe-layout-component@3.0.1"></script>
-    <script src="https://npmcdn.com/aframe-template-component@3.0.1"></script>
-    <script src="components/set-image.js"></script>
-    <script src="components/update-raycaster.js"></script>
-  </head>
-  <body>
-    <a-scene>
-      <a-assets>
-        <video loop="true" id="space" crossorigin="anonymous" src="space.mp4">
-        <audio id="click-sound" crossorigin="anonymous" src="https://cdn.aframe.io/360-image-gallery-boilerplate/audio/click.ogg"></audio>
-      </a-assets>
+<head>
+<script src="/aframe.min.js"></script>
+<script src="https://npmcdn.com/aframe-animation-component@3.0.1"></script>
+<script src="https://npmcdn.com/aframe-event-set-component@3.0.1"></script>
+<script src="https://npmcdn.com/aframe-layout-component@3.0.1"></script>
+<script src="https://npmcdn.com/aframe-template-component@3.0.1"></script>
+<script src="/move-menu.js"></script>
+</head>
+<body>
+<a-scene>
+  <a-assets>
+    <image id="room" crossorigin="anonymous" src="room.jpg">
+    <image id="news_button" crossorigin="anonymous" src="news_button.png">
+    <image id="entertainment_button" crossorigin="anonymous" src="entertainment_button.png">
+    <image id="features_button" crossorigin="anonymous" src="features_button.png">
+    <image id="destinations_button" crossorigin="anonymous" src="destinations_button.png">
+  </a-assets>
 
-      <a-sky id="image-360" radius="10" src="#space"></a-sky>
+  <!-- Behold, the power of components. -->
+  <a-box color="white" width="0.75" height="0.75" depth="0.75"
+    position="0 3.5 -4.5"
+    rotation="0 0 0"
+    scale="1 1 1"
+    src="#news_button"
+    move-menu="on: click;">
 
-      <!-- <a-torus-knot color="#B84A39" position="-9 0 9" arc="180" p="2" q="7" radius="5" radius-tubular="0.1"></a-torus-knot> -->
+    <a-animation attribute="rotation"
+                easing="linear"
+               dur="7500"
+               fill="forwards"
+               to="360 360 0"
+               repeat="indefinite"
+               ></a-animation>
 
+    <!-- <a-animation attribute="position" begin="click" to="0 1.5 -4.5"></a-animation> -->
+  </a-box>
 
-      <a-box color="teal" width="1" height="1" depth="1"
-             position="0 1.8 -5" rotation="0 45 45" scale="1 1 1"
-             sound="on: click; src: #click-sound">
+  <a-box color="white" width="0.75" height="0.75" depth="0.75"
+    position="-2.5 1.5 -4.5"
+    rotation="0 0 0"
+    scale="1 1 1"
+    src="#destinations_button"
+    move-menu="on: click;">
+      
+      <a-animation attribute="rotation"
+                  easing="linear"
+                 dur="7500"
+                 fill="forwards"
+                 to="360 360 0"
+                 repeat="indefinite"
+                 ></a-animation>
+    </a-box>
 
-<!--       <a-box color="orange" width="1" height="1" depth="1"
-             position="0 0 0" rotation="0 45 45" scale="1 1 1"
-             sound="on: click; src: #click-sound"> -->
+  <a-box color="white" width="0.75" height="0.75" depth="0.75"
+    position="2.5 1.5 -4.5"
+    rotation="0 0 0"
+    scale="1 1 1"
+    src="#features_button"
+    move-menu="on: click;">
+      
+      <a-animation attribute="rotation"
+                  easing="linear"
+                 dur="7500"
+                 fill="forwards"
+                 to="360 360 0"
+                 repeat="indefinite"
+                 ></a-animation>
+    </a-box>
 
-        <!-- Animation will only play when the box is clicked. -->
-        <a-animation attribute="rotation" begin="click" to="0 45 -45"></a-animation>
-      </a-box>
-      <a-camera position="1 1 1">
-        <a-cursor color="#2E3A87"></a-cursor>
-      </a-camera>
-    </a-scene>
-  </body>
+  <a-box color="white" width="0.75" height="0.75" depth="0.75"
+    position="0 0 -4.5"
+    rotation="0 0 0"
+    scale="1 1 1"
+    src="#entertainment_button"
+    move-menu="on: click;">
+      
+      <a-animation attribute="rotation"
+                  easing="linear"
+                 dur="7500"
+                 fill="forwards"
+                 to="360 360 0"
+                 repeat="indefinite"
+                 ></a-animation>
+    </a-box>
+
+  <a-light intensity="0.85" type="ambient" color="white"></a-light>
+  <a-light type="directional" intensity="0.3" color="#F9FFFD" position="4 1.5 0"></a-light>
+
+  <a-camera id="player" position="-4 2.5 0">
+    <a-cursor color="#2E3A87"></a-cursor>
+  </a-camera>
+
+  <a-sky id="image-360" radius="10" src="#room"  rotation="0 -90 0"></a-sky>
+</a-scene>
+</body>
 </html>
