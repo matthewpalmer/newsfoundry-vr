@@ -1,0 +1,62 @@
+<html>
+<head>
+<script>
+
+    var voices = [];
+
+        voices = window.speechSynthesis.getVoices();
+
+        console.log('Get voices ' + voices.length.toString());
+
+        for(var i = 0; i < voices.length; i++ ) {
+            console.log("Voice " + i.toString() + ' ' + voices[i].name);
+        }
+        var u1 = new SpeechSynthesisUtterance('AUCTIONS in Knox suburbs have again delivered strong results to vendors. The clearance rate hit 97 per cent from 30 auctions for the week ending November 20, according to CoreLogic.\n\n');
+
+        var XMLHttp = new XMLHttpRequest();
+        XMLHttp.open("GET", "http://cdn.newsapi.com.au/content/v2/09b7545627b783c80b54525401142f16?api_key=gqz7h5zs6b9f5bxrwhpgfhhb");
+        //http://cdn.newsapi.com.au/content/v2/8945baf8fc0f9cab6b425aa3ddc4cf39?api_key=gqz7h5zs6b9f5bxrwhpgfhhb
+        //top news
+        //http://cdn.newsapi.com.au/content/v2/8945baf8fc0f9cab6b425aa3ddc4cf39?api_key=gqz7h5zs6b9f5bxrwhpgfhhb
+        //entertainment
+        //http://cdn.newsapi.com.au/content/v2/ed2dfa176e69bee9b3f1a4397408e134?api_key=gqz7h5zs6b9f5bxrwhpgfhhb
+        //sports
+        //http://cdn.newsapi.com.au/content/v2/07d72a078dfb9d61af1f620890bb693f?api_key=gqz7h5zs6b9f5bxrwhpgfhhb
+
+        XMLHttp.onreadystatechange = handlerFunction;
+        XMLHttp.send(null);
+
+        u1.lang = 'en-US';
+        u1.pitch = 1;
+        u1.rate = 1;
+        u1.voice = voices[10];
+        u1.voiceURI = 'native';
+        u1.volume = 1;
+
+        function handlerFunction() {
+            if (XMLHttp.readyState == 4) {
+
+                var jsonResponse = JSON.parse(XMLHttp.responseText);
+                document.body.innerHTML= jsonResponse.title + "<br><br>" +
+                        jsonResponse.description +"<br><br>" + jsonResponse.body;
+                u1 = new SpeechSynthesisUtterance(jsonResponse.title);
+                u1.lang = 'en-US';
+                u1.pitch = 1;
+                u1.rate = 1;
+                u1.voice = voices[10];
+                u1.voiceURI = 'native';
+                u1.volume = 1;
+                speechSynthesis.speak(u1);
+                u1 = new SpeechSynthesisUtterance(jsonResponse.description);
+                speechSynthesis.speak(u1);
+                u1 = new SpeechSynthesisUtterance(jsonResponse.body);
+                speechSynthesis.speak(u1);
+            }
+        }
+
+  //  });
+</script>
+
+</head>
+<body/>
+</html>
