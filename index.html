@@ -7,6 +7,7 @@
 <script src="https://npmcdn.com/aframe-template-component@3.0.1"></script>
 <script src="/speak.js"></script>
 <script src="/get-story.js"></script>
+<script src="/enter-experience.js"></script>
 <script src="/move-menu.js"></script>
 </head>
 <body>
@@ -34,11 +35,14 @@
     <image id="entertainment_button_games" crossorigin="anonymous" src="entertainment_buttons/games.png">
     <image id="entertainment_button_music" crossorigin="anonymous" src="entertainment_buttons/music.png">
     <image id="entertainment_button_red_carpet" crossorigin="anonymous" src="entertainment_buttons/red_carpet.png">
+
+
+    <video id="sport_bikes" crossorigin="anonymous" src="bikes.mp4">
   </a-assets>
 
-  <!-- Behold, the power of components. -->
+
   <a-box id="news" color="white" width="0.75" height="0.75" depth="0.75"
-    position="0 2.5 -4.5"
+    position="0 2.5 -6.5"
     rotation="0 0 0"
     scale="1 1 1"
     src="#news_button"
@@ -52,11 +56,11 @@
                repeat="indefinite"
                ></a-animation>
 
-    <!-- <a-animation attribute="position" begin="click" to="0 1.5 -4.5"></a-animation> -->
+    <!-- <a-animation attribute="position" begin="click" to="0 1.5 -6.5"></a-animation> -->
   </a-box>
 
   <a-box id="destinations" color="white" width="0.75" height="0.75" depth="0.75"
-    position="-2.5 1.5 -4.5"
+    position="-2.5 1.5 -6.5"
     rotation="0 0 0"
     scale="1 1 1"
     src="#destinations_button"
@@ -72,7 +76,7 @@
     </a-box>
 
   <a-box id="features" color="white" width="0.75" height="0.75" depth="0.75"
-    position="2.5 1.5 -4.5"
+    position="2.5 1.5 -6.5"
     rotation="0 0 0"
     scale="1 1 1"
     src="#features_button"
@@ -88,7 +92,7 @@
     </a-box>
 
   <a-box id="entertainment" color="white" width="0.75" height="0.75" depth="0.75"
-    position="0 0 -4.5"
+    position="0 0 -6.5"
     rotation="0 0 0"
     scale="1 1 1"
     src="#entertainment_button"
@@ -104,7 +108,7 @@
     </a-box>
 
   <a-box color="#756B6C" width="1" height="0.1" depth="3"
-    position="-4 1 -2.5"
+    position="-3.5 1 -2.5"
     rotation="0 0 0"
     scale="1 1 1"></a-box>
 

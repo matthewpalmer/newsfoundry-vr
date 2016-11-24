@@ -34,12 +34,12 @@ AFRAME.registerComponent('move-menu', {
   animateToCorner: function(box, i) {
     console.log('fdhafjdkhsafsd');
     var curpos = box.getAttribute('position');
-    var newpos = -4 + ' 1.45 ' + (-3 + i * 0.75);
+    var newpos = -3.5 + ' 1.45 ' + (-3 + i * 0.75);
     this.animateToPos(box, newpos);
   },
 
   animateToMiddle: function(box) {
-    this.animateToPos(box, "0 2.5 -4.5");
+    this.animateToPos(box, "0 2.5 -6.5");
   },
 
   makebox: function() {
@@ -79,17 +79,21 @@ AFRAME.registerComponent('move-menu', {
     }
   },
 
-  addMenuRow: function(level, items) {
+  addMenuRow: function(items) {
     var delayed = [];
 
     for (var i = 0; i < items.length; i++) {
       var box = this.makebox();
       var x = ((0 - items.length / 2) + i * 1);
       var y = 1.5;
+
       box.setAttribute('position', x + ' ' + ' 0.5 ' + ' -6.5');
       box.setAttribute('src', items[i].src);
-      box.setAttribute('class', 'item-row-' + level);
+      box.setAttribute('class', 'item-row-1');
       box.setAttribute('material.opacity', '0');
+
+      // move-menu="on: click;"
+      box.setAttribute('enter-experience', 'on: click;');
       
 
       var fadein = document.createElement('a-animation');
@@ -99,7 +103,7 @@ AFRAME.registerComponent('move-menu', {
       fadein.setAttribute('dur', '700');
 
       var moveForward = document.createElement('a-animation');
-      moveForward.setAttribute('to', x + ' 1.5 -4.5');
+      moveForward.setAttribute('to', x + ' 1.5 -6.5');
       moveForward.setAttribute('dur', '700');
       moveForward.setAttribute('attribute', 'position');
 
@@ -108,12 +112,27 @@ AFRAME.registerComponent('move-menu', {
 
     // stop the box flashing up too early
     setTimeout(function() {
+      var container = document.createElement('a-entity');
+      container.setAttribute('id', 'submenu-row');
+
       delayed.forEach(function(pair) {
         pair[0].appendChild(pair[1]);
         pair[0].appendChild(pair[2]);
-        document.getElementById('master-scene').appendChild(pair[0]);
+        container.appendChild(pair[0]);
       });
+
+       setTimeout(function() {
+        document.getElementById('master-scene').appendChild(container);
+      }, 50);
     }, 50);
+  },
+
+  deleteOldRow: function() {
+    var master = document.getElementById('master-scene');
+    var row = document.getElementById('submenu-row');
+    if (row) {
+      master.removeChild(row);
+    }
   },
 
   init: function () {
@@ -131,22 +150,13 @@ AFRAME.registerComponent('move-menu', {
 
       that.animateToMiddle(el);
 
-      // delete old row
-      var oldrow = document.querySelectorAll('.item-row-1');
-      var container = document.getElementById('master-scene');
-      for (var i = 0; i < oldrow.length; i++) {
-        container.removeChild(oldrow[i]);
-      }
+      that.deleteOldRow();
+      that.addMenuRow(that.config.toplevel[el.id]);
 
-      setTimeout(function() {
-        that.addMenuRow(1, that.config.toplevel[el.id]);
-      }, 50);
-      
-
-      getStory('09b7545627b783c80b54525401142f16', function(json) {
-        console.log('will speak', json.title);
-        speakText(json.title);
-      });
+      // getStory('09b7545627b783c80b54525401142f16', function(json) {
+      //   console.log('will speak', json.title);
+      //   speakText(json.title);
+      // });
 
       // melbourne story
       // 7373b1109acf4e474fa01421adf27036
