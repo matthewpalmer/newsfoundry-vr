@@ -11,6 +11,8 @@
 <script src="/move-menu.js"></script>
 </head>
 <body>
+<audio id="airplane_noise" loop="true" autoplay="true" crossorigin="anonymous" src="/airplane_noise.mp3"></audio>
+
 <a-scene id="master-scene">
   <a-assets>
     <image id="room" crossorigin="anonymous" src="room.jpg">
@@ -46,9 +48,13 @@
     <image id="newsreader_2" crossorigin="anonymous" src="newsreader_2.png">
     <image id="newsreader_3" crossorigin="anonymous" src="newsreader_3.png">
 
-    <video id="sport_bikes" crossorigin="anonymous" src="bikes.mp4">
-  </a-assets>
 
+    <image id="home_button" crossorigin="anonymous" src="home_button.png">
+
+    <video id="sport_bikes" crossorigin="anonymous" src="bikes.mp4">
+
+
+  </a-assets>
 
   <a-box id="news" color="white" width="0.75" height="0.75" depth="0.75"
     position="0 2.5 -6.5"
@@ -124,7 +130,7 @@
   <a-light intensity="0.85" type="ambient" color="white"></a-light>
   <a-light type="directional" intensity="0.3" color="#F9FFFD" position="4 1.5 0"></a-light>
 
-  <a-camera id="player" position="-4 2.5 0">
+  <a-camera id="player" position="-4 2.5 0"  look-controls wasd-controls>
     <a-cursor color="#2E3A87"></a-cursor>
   </a-camera>
 

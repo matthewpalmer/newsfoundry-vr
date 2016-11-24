@@ -26,12 +26,30 @@ AFRAME.registerComponent('enter-experience', {
     var box = document.createElement('a-box');
 
     box.setAttribute('id', 'exit-button-box');
-    box.setAttribute('width', '1');
-    box.setAttribute('height', '1');
-    box.setAttribute('depth', '1');
+    box.setAttribute('width', '0.6');
+    box.setAttribute('height', '0.6');
+    box.setAttribute('depth', '0.6');
     box.setAttribute('color', 'white');
     box.setAttribute('position', '-3, 1.5, -5');
     box.setAttribute('scale', '1 1 1');
+    box.setAttribute('src', '#home_button');
+    box.setAttribute('rotation', '0 0 0');
+    box.setAttribute('easing', 'linear');
+
+    var anim = document.createElement('a-animation');
+    anim.setAttribute('attribute', 'rotation');
+    anim.setAttribute('to', '360 0 0');
+    anim.setAttribute('dur', '15500');
+    anim.setAttribute('fill', 'forwards');
+    anim.setAttribute('repeat', 'indefinite');
+
+               //  easing="linear"
+               // dur="7500"
+               // fill="forwards"
+               // to="360 360 0"
+               // repeat="indefinite"
+
+    box.appendChild(anim);
 
     box.addEventListener('click', function() {
        this[this.currentExperience + '_exit']()
