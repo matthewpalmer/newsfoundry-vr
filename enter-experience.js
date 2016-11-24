@@ -24,6 +24,8 @@ AFRAME.registerComponent('enter-experience', {
 
   addExitButton: function() {
     var box = document.createElement('a-box');
+
+    box.setAttribute('id', 'exit-button-box');
     box.setAttribute('width', '1');
     box.setAttribute('height', '1');
     box.setAttribute('depth', '1');
@@ -41,11 +43,24 @@ AFRAME.registerComponent('enter-experience', {
 
   '#entertainment_button_celebrity_exit': function() {
     console.log('leaving entertainment button');
+debugger;
+    var exit = document.getElementById('exit-button-box');
+    document.getElementById('master-scene').removeChild(exit);
 
-    
+    var boxes = document.querySelectorAll('a-box');
+    for (var i = 0; i < boxes.length; i++) {
+      boxes[i].setAttribute('opacity', '1');
+    }
+
+    var newsreader = document.getElementById('newsreader');
+    newsreader.setAttribute('opacity', '0');
+    newsreader.setAttribute('width', '0');
+    newsreader.setAttribute('height', '0');
   },
 
   '#entertainment_button_celebrity': function(el) {
+    // width="3.2" height="4.17"
+
     var story = this.config['#entertainment_button_celebrity'];
     var boxes = document.querySelectorAll('a-box');
     for (var i = 0; i < boxes.length; i++) {
@@ -59,11 +74,13 @@ AFRAME.registerComponent('enter-experience', {
     var newsreader = document.getElementById('newsreader');
     if (!newsreader) return;
     newsreader.setAttribute('opacity', '1');
+    newsreader.setAttribute('width', '3.2');
+    newsreader.setAttribute('height', '4.17');
 
     setInterval(function() {
 
       if (newsreader) {
-        newsreader.setAttribute('src', '#newsreader_' + i);
+        newsreader.setAttribute('src', '#newsreader_' + (i - 1));
       }
 
       i = i % 3 + 1;
