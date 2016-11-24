@@ -28,10 +28,9 @@ AFRAME.registerComponent('enter-experience', {
       boxes[i].setAttribute('opacity', '1');
     }
 
-    var video = document.getElementById('image-360');
-    video.setAttribute('opacity', '0');
-    var video = document.getElementById('room');
-    video.setAttribute('opacity', '1');
+    var pageBack = document.getElementById('image-360');
+    pageBack.setAttribute('opacity', '1');
+    pageBack.setAttribute('src', '#room');
 
   },
 
