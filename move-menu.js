@@ -42,6 +42,79 @@ AFRAME.registerComponent('move-menu', {
     this.animateToPos(box, "0 2.5 -4.5");
   },
 
+  makebox: function() {
+    var box = document.createElement('a-box');
+    box.setAttribute('color', 'white');
+    box.setAttribute('width', '0.75');
+    box.setAttribute('height', '0.75');
+    box.setAttribute('depth', '0.75');
+    box.setAttribute('rotation', '0 0 0');
+    box.setAttribute('scale', '1 1 1');
+    return box;
+  },
+
+  config: {
+    toplevel: {
+      destinations: [
+        { src: '#destinations_button_nsw' },
+        { src: '#destinations_button_qld' },
+        { src: '#destinations_button_wa' },
+        { src: '#destinations_button_nt' },
+        { src: '#destinations_button_sa' },
+        { src: '#destinations_button_vic' }
+      ],
+      news: [],
+      features: [
+        { src: '#features_button_sport' },
+        { src: '#features_button_real_estate' },
+        { src: '#features_button_food' },
+        { src: '#features_button_business' },
+      ],
+      entertainment: [
+        { src: '#entertainment_button_celebrity' },
+        { src: '#entertainment_button_games' },
+        { src: '#entertainment_button_music' },
+        { src: '#entertainment_button_red_carpet' },
+      ]
+    }
+  },
+
+  addMenuRow: function(level, items) {
+    var delayed = [];
+
+    for (var i = 0; i < items.length; i++) {
+      var box = this.makebox();
+      var x = ((0 - items.length / 2) + i * 1);
+      var y = 1.5;
+      box.setAttribute('position', x + ' ' + ' 0.5 ' + ' -6.5');
+      box.setAttribute('src', items[i].src);
+      box.setAttribute('class', 'item-row-' + level);
+      box.setAttribute('material.opacity', '0');
+      
+
+      var fadein = document.createElement('a-animation');
+      fadein.setAttribute('attribute', 'material.opacity');
+      fadein.setAttribute('from', '0');
+      fadein.setAttribute('to', '1');
+      fadein.setAttribute('dur', '700');
+
+      var moveForward = document.createElement('a-animation');
+      moveForward.setAttribute('to', x + ' 1.5 -4.5');
+      moveForward.setAttribute('dur', '700');
+      moveForward.setAttribute('attribute', 'position');
+
+      delayed.push([box, fadein, moveForward]);
+    }
+
+    // stop the box flashing up too early
+    setTimeout(function() {
+      delayed.forEach(function(pair) {
+        pair[0].appendChild(pair[1]);
+        pair[0].appendChild(pair[2]);
+        document.getElementById('master-scene').appendChild(pair[0]);
+      });
+    }, 50);
+  },
 
   init: function () {
     var data = this.data;
@@ -57,6 +130,18 @@ AFRAME.registerComponent('move-menu', {
       });
 
       that.animateToMiddle(el);
+
+      // delete old row
+      var oldrow = document.querySelectorAll('.item-row-1');
+      var container = document.getElementById('master-scene');
+      for (var i = 0; i < oldrow.length; i++) {
+        container.removeChild(oldrow[i]);
+      }
+
+      setTimeout(function() {
+        that.addMenuRow(1, that.config.toplevel[el.id]);
+      }, 50);
+      
 
       getStory('09b7545627b783c80b54525401142f16', function(json) {
         console.log('will speak', json.title);

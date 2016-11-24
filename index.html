@@ -10,17 +10,34 @@
 <script src="/move-menu.js"></script>
 </head>
 <body>
-<a-scene>
+<a-scene id="master-scene">
   <a-assets>
     <image id="room" crossorigin="anonymous" src="room.jpg">
     <image id="news_button" crossorigin="anonymous" src="news_button.png">
     <image id="entertainment_button" crossorigin="anonymous" src="entertainment_button.png">
     <image id="features_button" crossorigin="anonymous" src="features_button.png">
     <image id="destinations_button" crossorigin="anonymous" src="destinations_button.png">
+    
+    <image id="destinations_button_nsw" crossorigin="anonymous" src="destinations_buttons/nsw.png">
+    <image id="destinations_button_qld" crossorigin="anonymous" src="destinations_buttons/qld.png">
+    <image id="destinations_button_nt" crossorigin="anonymous" src="destinations_buttons/nt.png">
+    <image id="destinations_button_sa" crossorigin="anonymous" src="destinations_buttons/sa.png">
+    <image id="destinations_button_vic" crossorigin="anonymous" src="destinations_buttons/vic.png">
+    <image id="destinations_button_wa" crossorigin="anonymous" src="destinations_buttons/wa.png">
+
+    <image id="features_button_sport" crossorigin="anonymous" src="features_buttons/sport.png">
+    <image id="features_button_real_estate" crossorigin="anonymous" src="features_buttons/real_estate.png">
+    <image id="features_button_food" crossorigin="anonymous" src="features_buttons/food.png">
+    <image id="features_button_business" crossorigin="anonymous" src="features_buttons/business.png">
+
+    <image id="entertainment_button_celebrity" crossorigin="anonymous" src="entertainment_buttons/celebrity.png">
+    <image id="entertainment_button_games" crossorigin="anonymous" src="entertainment_buttons/games.png">
+    <image id="entertainment_button_music" crossorigin="anonymous" src="entertainment_buttons/music.png">
+    <image id="entertainment_button_red_carpet" crossorigin="anonymous" src="entertainment_buttons/red_carpet.png">
   </a-assets>
 
   <!-- Behold, the power of components. -->
-  <a-box color="white" width="0.75" height="0.75" depth="0.75"
+  <a-box id="news" color="white" width="0.75" height="0.75" depth="0.75"
     position="0 2.5 -4.5"
     rotation="0 0 0"
     scale="1 1 1"
@@ -38,7 +55,7 @@
     <!-- <a-animation attribute="position" begin="click" to="0 1.5 -4.5"></a-animation> -->
   </a-box>
 
-  <a-box color="white" width="0.75" height="0.75" depth="0.75"
+  <a-box id="destinations" color="white" width="0.75" height="0.75" depth="0.75"
     position="-2.5 1.5 -4.5"
     rotation="0 0 0"
     scale="1 1 1"
@@ -54,7 +71,7 @@
                  ></a-animation>
     </a-box>
 
-  <a-box color="white" width="0.75" height="0.75" depth="0.75"
+  <a-box id="features" color="white" width="0.75" height="0.75" depth="0.75"
     position="2.5 1.5 -4.5"
     rotation="0 0 0"
     scale="1 1 1"
@@ -70,7 +87,7 @@
                  ></a-animation>
     </a-box>
 
-  <a-box color="white" width="0.75" height="0.75" depth="0.75"
+  <a-box id="entertainment" color="white" width="0.75" height="0.75" depth="0.75"
     position="0 0 -4.5"
     rotation="0 0 0"
     scale="1 1 1"
