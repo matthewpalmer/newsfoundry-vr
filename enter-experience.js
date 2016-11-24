@@ -2,6 +2,38 @@ AFRAME.registerComponent('enter-experience', {
   schema: {
     on: {type: 'string'}
   },
+
+
+  enter360video: function(src) {
+    var video = document.getElementById('image-360');
+    //hide boxes
+    var boxes = document.querySelectorAll('a-box');
+    for (var i = 0; i < boxes.length; i++) {
+      boxes[i].setAttribute('opacity', '0');
+    }
+
+    var exit = this.addExitButton();
+    if (!video) return;
+
+    video.setAttribute('src', src);
+    video.setAttribute('opacity', '1');
+  },
+
+  exit360video: function() {
+    console.log('leaving entertainment button destinations');
+    var exit = document.getElementById('exit-button-box');
+    document.getElementById('master-scene').removeChild(exit);
+
+    var boxes = document.querySelectorAll('a-box');
+    for (var i = 0; i < boxes.length; i++) {
+      boxes[i].setAttribute('opacity', '1');
+    }
+
+    var pageBack = document.getElementById('image-360');
+    pageBack.setAttribute('opacity', '1');
+    pageBack.setAttribute('src', '#room');
+  },
+
   '#destinations_button_nsw': function(el) {
     console.log('DESTINATIONS NSW');
 
@@ -86,6 +118,14 @@ AFRAME.registerComponent('enter-experience', {
     return box;
   },
 
+  '#travel_australia': function() {
+    this.enter360video('videos/ocean_road.mp4');
+  },
+
+  '#travel_australia_exit': function() {
+    this.exit360video();
+  },
+
   '#entertainment_button_celebrity_exit': function() {
     console.log('leaving entertainment button');
 
@@ -104,6 +144,7 @@ AFRAME.registerComponent('enter-experience', {
 
     window.speechSynthesis.cancel();
   },
+
 
   '#entertainment_button_celebrity': function(el) {
     // width="3.2" height="4.17"
