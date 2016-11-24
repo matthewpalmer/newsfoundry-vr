@@ -20,6 +20,19 @@ AFRAME.registerComponent('enter-experience', {
 
   '#destinations_button_nsw_exit': function() {
     console.log('leaving entertainment button destinations');
+    var exit = document.getElementById('exit-button-box');
+    document.getElementById('master-scene').removeChild(exit);
+
+    var boxes = document.querySelectorAll('a-box');
+    for (var i = 0; i < boxes.length; i++) {
+      boxes[i].setAttribute('opacity', '1');
+    }
+
+    var video = document.getElementById('image-360');
+    video.setAttribute('opacity', '0');
+    var video = document.getElementById('room');
+    video.setAttribute('opacity', '1');
+
   },
 
   '#features_button_sport': function() {
