@@ -32,7 +32,6 @@ AFRAME.registerComponent('move-menu', {
   },
 
   animateToCorner: function(box, i) {
-    console.log('fdhafjdkhsafsd');
     var curpos = box.getAttribute('position');
     var newpos = -3.5 + ' 1.45 ' + (-3 + i * 0.75);
     this.animateToPos(box, newpos);
@@ -94,7 +93,7 @@ AFRAME.registerComponent('move-menu', {
 
       // move-menu="on: click;"
       box.setAttribute('enter-experience', 'on: click;');
-      
+
 
       var fadein = document.createElement('a-animation');
       fadein.setAttribute('attribute', 'material.opacity');
