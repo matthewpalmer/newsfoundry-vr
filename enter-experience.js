@@ -2,9 +2,24 @@ AFRAME.registerComponent('enter-experience', {
   schema: {
     on: {type: 'string'}
   },
-
-  '#destinations_button_nsw': function() {
+  '#destinations_button_nsw': function(el) {
     console.log('DESTINATIONS NSW');
+
+    var video = document.getElementById('image-360');
+    //hide boxes
+    var boxes = document.querySelectorAll('a-box');
+    for (var i = 0; i < boxes.length; i++) {
+      boxes[i].setAttribute('opacity', '0');
+    }
+
+    var exit = this.addExitButton();
+    if (!video) return;
+    video.setAttribute('src', 'bikes.mp4');
+
+  },
+
+  '#destinations_button_nsw_exit': function() {
+    console.log('leaving entertainment button destinations');
   },
 
   '#features_button_sport': function() {
