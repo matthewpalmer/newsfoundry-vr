@@ -22,8 +22,37 @@ AFRAME.registerComponent('enter-experience', {
     }
   },
 
+  addExitButton: function() {
+    var box = document.createElement('a-box');
+    box.setAttribute('width', '1');
+    box.setAttribute('height', '1');
+    box.setAttribute('depth', '1');
+    box.setAttribute('color', 'white');
+    box.setAttribute('position', '-3, 1.5, -5');
+    box.setAttribute('scale', '1 1 1');
+
+    box.addEventListener('click', function() {
+       this[this.currentExperience + '_exit']()
+    }.bind(this));
+
+    document.getElementById('master-scene').appendChild(box);
+    return box;
+  },
+
+  '#entertainment_button_celebrity_exit': function() {
+    console.log('leaving entertainment button');
+
+    
+  },
+
   '#entertainment_button_celebrity': function(el) {
     var story = this.config['#entertainment_button_celebrity'];
+    var boxes = document.querySelectorAll('a-box');
+    for (var i = 0; i < boxes.length; i++) {
+      boxes[i].setAttribute('opacity', '0');
+    }
+
+    var exit = this.addExitButton();
 
     var i = 1;
 
@@ -51,9 +80,10 @@ AFRAME.registerComponent('enter-experience', {
       
 
       var experience = el.getAttribute('src');
+      this.currentExperience = experience;
       console.log('ENTERING EXPERIENCE', experience);
 
       that[experience]();
-    });
+    }.bind(this));
   }
 });
