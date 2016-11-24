@@ -54,6 +54,36 @@ AFRAME.registerComponent('move-menu', {
 
   config: {
     toplevel: {
+      news: [
+        { src: '#news_button_top_stories' },
+        { src: '#news_button_national' },
+        { src: '#news_button_business' },
+        { src: '#news_button_world' }
+      ],
+
+      entertainment: [
+        { src: '#entertainment_button_celebrity' },
+        { src: '#entertainment_button_games' },
+        { src: '#entertainment_button_music' },
+        { src: '#entertainment_button_red_carpet' },
+      ],
+
+      travel: [
+        { src: '#travel_australia' },
+        { src: '#travel_cruises' },
+        { src: '#travel_destinations' },
+        { src: '#travel_holiday_ideas' },
+      ],
+
+      sport: [
+        { src: '#sport_button_rugby' },
+        { src: '#sport_button_extreme' },
+        { src: '#sport_button_tennis' },
+        { src: '#sport_button_cricket' },
+      ],
+
+
+// old
       destinations: [
         { src: '#destinations_button_nsw' },
         { src: '#destinations_button_qld' },
@@ -62,24 +92,12 @@ AFRAME.registerComponent('move-menu', {
         { src: '#destinations_button_sa' },
         { src: '#destinations_button_vic' }
       ],
-      news: [
-        { src: '#news_button_top_stories' },
-        { src: '#news_button_sport' },
-        { src: '#news_button_business' },
-        { src: '#news_button_entertainment' }
-      ],
       features: [
         { src: '#features_button_hurricane' },
         { src: '#features_button_jared_hayne' },
         { src: '#features_button_taste' },
         { src: '#features_button_west_connex' },
       ],
-      entertainment: [
-        { src: '#entertainment_button_celebrity' },
-        { src: '#entertainment_button_games' },
-        { src: '#entertainment_button_music' },
-        { src: '#entertainment_button_red_carpet' },
-      ]
     }
   },
 
