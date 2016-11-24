@@ -126,6 +126,30 @@ AFRAME.registerComponent('enter-experience', {
     this.exit360video();
   },
 
+  '#sport_button_extreme': function() {
+    this.enter360video('videos/bikes.mp4');
+  },
+
+  '#sport_button_extreme_exit': function() {
+    this.exit360video();
+  },
+
+  '#entertainment_button_red_carpet': function() {
+    this.enter360video('videos/red_carpet.mp4');
+  },
+
+  '#entertainment_button_red_carpet_exit': function() {
+    this.exit360video();
+  },
+
+  '#news_button_world': function() {
+    this.enter360video('videos/hurricane.mp4');
+  },
+
+  '#news_button_world_exit': function() {
+    this.exit360video();
+  },
+
   '#entertainment_button_celebrity_exit': function() {
     console.log('leaving entertainment button');
 
