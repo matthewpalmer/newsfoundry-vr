@@ -27,8 +27,11 @@ AFRAME.registerComponent('enter-experience', {
 
     var i = 1;
 
+    var newsreader = document.getElementById('newsreader');
+    if (!newsreader) return;
+    newsreader.setAttribute('opacity', '1');
+
     setInterval(function() {
-      var newsreader = document.getElementById('newsreader');
 
       if (newsreader) {
         newsreader.setAttribute('src', '#newsreader_' + i);
